@@ -46,6 +46,8 @@ __all__ = ["NetworkAddressError", "SocketError", "RedirectionError", "Request",
            "Response", "Redirection", "ClientError", "ServerError", "Resource",
            "ResourceTemplate", "get", "put", "post", "delete", "head"]
 
+capture = None
+
 default_encoding = "ISO-8859-1"
 default_chunk_size = 4096
 
@@ -346,6 +348,13 @@ class Request(object):
         headers = dict(self.headers)
         headers.setdefault("User-Agent", user_agent(product))
         while True:
+
+            if capture is not None:
+                try:
+                    capture(self.method, str(uri).partition("/db/data/")[2], self._body)
+                except:
+                    pass
+
             http, rs = submit(self.method, uri, self.body, headers)
             status_class = rs.status // 100
             if status_class == 3:
