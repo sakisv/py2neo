@@ -82,7 +82,7 @@ try:
             Extension("py2neo.packages.jsonstream.cjsonstream_2x",
                             ["py2neo/packages/jsonstream/cjsonstream_2x.c"]),
             Extension("py2neo.packages.urimagic.kvlist",
-                            ["py2neo/packages/urimagic/kylist.c"]),
+                            ["py2neo/packages/urimagic/kvlist.c"]),
             Extension("py2neo.packages.urimagic.rfc3986",
                             ["py2neo/packages/urimagic/rfc3986.c"]),
             Extension("py2neo.packages.urimagic.rfc6570",
