@@ -78,7 +78,15 @@ try:
         do_setup([Extension("py2neo.packages.jsonstream.cjsonstream",
                             ["py2neo/packages/jsonstream/cjsonstream.c"])])
     else:
-        do_setup([Extension("py2neo.packages.jsonstream.cjsonstream_2x",
-                            ["py2neo/packages/jsonstream/cjsonstream_2x.c"])])
+        do_setup([
+            Extension("py2neo.packages.jsonstream.cjsonstream_2x",
+                            ["py2neo/packages/jsonstream/cjsonstream_2x.c"]),
+            Extension("py2neo.packages.urimagic.kvlist",
+                            ["py2neo/packages/urimagic/kylist.c"]),
+            Extension("py2neo.packages.urimagic.rfc3986",
+                            ["py2neo/packages/urimagic/rfc3986.c"]),
+            Extension("py2neo.packages.urimagic.rfc6570",
+                            ["py2neo/packages/urimagic/rfc6570.c"]),
+        ])
 except:
     do_setup()
