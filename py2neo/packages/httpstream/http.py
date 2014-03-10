@@ -183,7 +183,7 @@ class ConnectionPuddle(local):
         self.__host_port = host_port
         self.__active = []
         self.__passive = []
-        self.__timeout = environ.get("PY2NEO_TIMEOUT", 2)
+        self.__timeout = float(environ.get("PY2NEO_TIMEOUT", 2))
 
     @property
     def host_port(self):
