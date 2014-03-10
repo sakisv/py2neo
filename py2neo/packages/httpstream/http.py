@@ -34,7 +34,7 @@ except ImportError:
                          responses)
 import json
 import logging
-from os import strerror
+from os import strerror, environ
 from socket import error, gaierror, herror, timeout, IPPROTO_TCP, TCP_NODELAY
 from threading import local
 import sys
@@ -183,6 +183,7 @@ class ConnectionPuddle(local):
         self.__host_port = host_port
         self.__active = []
         self.__passive = []
+        self.__timeout = environ.get("PY2NEO_TIMEOUT", 2)
 
     @property
     def host_port(self):
@@ -208,7 +209,7 @@ class ConnectionPuddle(local):
         if self.__passive:
             connection = self.__passive.pop()
         else:
-            connection = self.__connection_class(self.host_port)
+            connection = self.__connection_class(self.host_port, timeout=self.__timeout)
         self.__active.append(connection)
         return connection
 
